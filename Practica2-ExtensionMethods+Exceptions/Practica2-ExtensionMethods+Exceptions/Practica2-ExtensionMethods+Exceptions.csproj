@@ -45,11 +45,13 @@
   <ItemGroup>
     <Compile Include="Ejercicio1\DividePorCero.cs" />
     <Compile Include="Ejercicio2\DivisionComun.cs" />
+    <Compile Include="Ejercicio3\Logic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
