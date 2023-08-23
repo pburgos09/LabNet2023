@@ -1,4 +1,5 @@
 ﻿using Practica2_ExtensionMethods_Exceptions.Ejercicio1;
+using Practica2_ExtensionMethods_Exceptions.Ejercicio2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace Practica2_ExtensionMethods_Exceptions
     {
         static void Main(string[] args)
         {
-            DividePorCero.DividirPorCero();
+            //DividePorCero.DividirPorCero();
+            //Console.ReadKey();
+            DivisionComun.Dividir();
             Console.ReadKey();
         }
     }
