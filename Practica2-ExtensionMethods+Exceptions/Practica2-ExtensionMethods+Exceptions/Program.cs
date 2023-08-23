@@ -1,6 +1,7 @@
 ﻿using Practica2_ExtensionMethods_Exceptions.Ejercicio1;
 using Practica2_ExtensionMethods_Exceptions.Ejercicio2;
 using Practica2_ExtensionMethods_Exceptions.Ejercicio3;
+using Practica2_ExtensionMethods_Exceptions.Ejercicio4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,13 @@ namespace Practica2_ExtensionMethods_Exceptions
     {
         static void Main(string[] args)
         {
-            //DividePorCero.DividirPorCero();
-            //Console.ReadKey();
-            //DivisionComun.Dividir();
-            //Console.ReadKey();
+            DividePorCero.DividirPorCero();
+            Console.ReadKey();
+            DivisionComun.Dividir();
+            Console.ReadKey();
             Logic.LanzarExcepcion();
+            Console.ReadKey();
+            LogicaConExcepcionPersonalizada.LanzarExcepcionPersonalizada();
             Console.ReadKey();
         }
     }
