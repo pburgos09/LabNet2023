@@ -2,6 +2,7 @@
 using Practica4_LINQ.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,49 +87,79 @@ namespace Practica4_LINQ.Logic
         public List<Customers> CustomersCompanyNameInUppercaseAndLowercaseTogetherQS()
         {
             var customers = from c in _context.Customers
-                            select new Customers
+                            select new
                             {
                                 CustomerID = c.CustomerID,
                                 CompanyName = c.CompanyName.ToUpper() + " " + c.CompanyName.ToLower()
                             };
-            return customers.ToList();
+
+            var customerList = customers.ToList()
+                .Select(c => new Customers
+                {
+                    CustomerID = c.CustomerID,
+                    CompanyName = c.CompanyName
+                })
+                .ToList();
+
+            return customerList;
         }
 
+
         public List<Customers> CustomersCompanyNameInUppercaseAndLowercaseTogetherMS()
-        {             var customers = _context.Customers.Select(c => new Customers
         {
+            var customers = _context.Customers.Select(c => new
+            {
                 CustomerID = c.CustomerID,
                 CompanyName = c.CompanyName.ToUpper() + " " + c.CompanyName.ToLower()
             });
-                   return customers.ToList();
+
+            var customerList = customers.ToList()
+                .Select(c => new Customers
+                {
+                    CustomerID = c.CustomerID,
+                    CompanyName = c.CompanyName
+                })
+                .ToList();
+
+            return customerList;
         }
 
         public List<Customers> JoinWACustomersWithOrdersAfter199711QS()
         {
-            var customers = from c in _context.Customers
-                            join o in _context.Orders
-                            on c.CustomerID equals o.CustomerID
-                            where o.OrderDate > new DateTime(1997, 11, 1) && c.Region == "WA"
-                            select c;
-            return customers.ToList();
+            var customers = _context.Customers
+                .Where(c => c.Region == "WA")
+                .Include(c => c.Orders)
+                .ToList();
+
+            var filteredCustomers = customers
+                .Where(c => c.Orders.Any(o => o.OrderDate > new DateTime(1997, 11, 1)))
+                .ToList();
+
+            return filteredCustomers;
         }
+
 
         public List<Customers> JoinWACustomersWithOrdersAfter199711MS()
         {
-            var customers = _context.Customers.Join(_context.Orders,
-                               c => c.CustomerID,
-                                              o => o.CustomerID,
-                                                             (c, o) => new { Customer = c, Order = o })
-                .Where(co => co.Order.OrderDate > new DateTime(1997, 11, 1) && co.Customer.Region == "WA")
-                .Select(co => co.Customer);
-            return customers.ToList();
+            var customers = _context.Customers
+                .Where(c => c.Region == "WA")
+                .Include(c => c.Orders)
+                .Join(_context.Orders,
+                    c => c.CustomerID,
+                    o => o.CustomerID,
+                    (c, o) => new { Customer = c, Order = o })
+                .Where(co => co.Order.OrderDate > new DateTime(1997, 11, 1))
+                .Select(co => co.Customer)
+                .ToList();
+
+            return customers;
         }
 
         public List<Customers> FirstThreeCustomersWAQS()
         {
             var customers = (from c in _context.Customers
-                                                         where c.Region == "WA"
-                                                                                     select c).Take(3);
+                             where c.Region == "WA"
+                             select c).Take(3);
             return customers.ToList();
         }
 

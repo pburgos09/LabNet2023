@@ -141,7 +141,7 @@ namespace Practica4_LINQ.Logic
         public Products FirstProductQS()
         {
             var product = (from p in _context.Products
-                                                     select p).FirstOrDefault();
+                           select p).FirstOrDefault();
             return product;
         }
 
