@@ -1,0 +1,40 @@
+header {
+  width: 100v;
+  background-color: #f4f495;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+aside {
+  width: 30%;
+  background-color: #e39191;
+  padding: 20px;
+  margin: 20px;
+}
+
+main {
+  width: 70%;
+  background-color: #9df495;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+}
+
+footer {
+  width: 100v;
+  background-color: #938bec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>LabNetPractica5</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>
+          <a href="https://github.com/pburgos09/LabNet2023/tree/labNetPractica4"
+            >LabNetPractica5</a
+          >
+        </h1>
+      </nav>
+    </header>
+    <div class="content">
+      <aside>
+        <h4>Reglas basicas:</h4>
+        <ul>
+          <li>El jugador empieza con 3 puntos</li>
+          <li>El jugador tiene 3 intentos por ronda</li>
+          <li>Si adivina en el primer intento suma 3 puntos</li>
+          <li>Si adivina en el segundo intento suma 2 puntos</li>
+          <li>Si adivina en el tercer intento suma 1 punto</li>
+          <li>Pierde cuando se acaban los intentos</li>
+          <li>Resta 1 punto si erra en cada intento</li>
+        </ul>
+      </aside>
+      <main>
+        <div>
+          <h2>Adivina el numero!</h2>
+          <h4>Estoy pensando en un numero entre 1 y 20</h4>
+          <h4 id="gessedNumber">¿Puedes adivinarlo?</h4>
+          <p>Ronda N° <span id="currentRound"></span></p>
+          <p>Intentos restantes: <span id="attempts">3</span></p>
+          <input type="number" id="guess" min="1" max="20" />
+          <button id="check">Adivinar</button>
+          <button id="nextRound">Siguiente ronda</button>
+          <button id="reset">Reiniciar</button>
+          <h3 id="message"></h3>
+        </div>
+        <div>
+          <h4>Puntaje mas alto: <span id="highScore"></span></h4>
+          <h4>Puntaje actual: <span id="score"></span></h4>
+        </div>
+      </main>
+    </div>
+    <footer>
+      <p>
+        Hecho por
+        <a href="https://github.com/pburgos09">Pablo Burgos</a>
+      </p>
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>
