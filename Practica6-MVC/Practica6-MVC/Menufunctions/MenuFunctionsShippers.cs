@@ -111,7 +111,7 @@ namespace Practica6_MVC.Menufunctions
                 {
                     ShipperID = shipperID
                 };
-                shippersLogic.Delete(shipper);
+                shippersLogic.Delete(shipper.ShipperID);
             }catch(Exception ex)
             {
                 Console.WriteLine($"Error al eliminar el shipper: {ex.Message}");

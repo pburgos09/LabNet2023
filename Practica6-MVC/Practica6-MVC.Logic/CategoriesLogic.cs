@@ -73,7 +73,7 @@ namespace Practica6_MVC.Logic
             }
         }
 
-        public void Update(CategoriesDTO entity)
+        public void Update( CategoriesDTO entity)
         {
             try
             {

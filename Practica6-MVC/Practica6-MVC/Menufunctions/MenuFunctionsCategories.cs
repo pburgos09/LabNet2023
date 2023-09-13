@@ -112,7 +112,7 @@ namespace Practica6_MVC.Menufunctions
                 {
                     CategoryID = categoryID
                 };
-                categoriesLogic.Delete(category);
+                categoriesLogic.Delete(category.CategoryID);
                 Console.WriteLine("Categoria eliminada correctamente");
             }
             catch (Exception ex)
