@@ -12,7 +12,8 @@ namespace Practica6_MVC.Logic
         {
         }
         public List<CategoriesDTO> GetAll()
-        { try
+        {
+            try
             {
                 return _context.Categories.Select(x => new CategoriesDTO
                 {
@@ -20,9 +21,10 @@ namespace Practica6_MVC.Logic
                     CategoryName = x.CategoryName,
                     Description = x.Description
                 }).ToList();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                throw new Exception("Error al obtener las categorías", ex);
+                throw new Exception($"Error al obtener las categorías:{ex.Message}");
             }
         }
 
@@ -41,9 +43,10 @@ namespace Practica6_MVC.Logic
                 {
                     throw new System.Exception("No se encontró la categoría");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                throw new Exception("Error al eliminar la categoría", ex);
+                throw new Exception($"Error al eliminar la categoría:{ex.Message}");
             }
         }
 
@@ -51,7 +54,11 @@ namespace Practica6_MVC.Logic
         {
             try
             {
-                if(entity.CategoryName.Length <= 15)
+                if(entity.CategoryName == "" || entity.Description == "")
+                {
+                    throw new ArgumentException("No se puede insertar una categoría con campos vacios");
+                }
+                if (entity.CategoryName.Length <= 15)
                 {
                     var category = new Categories
                     {
@@ -67,20 +74,25 @@ namespace Practica6_MVC.Logic
                 {
                     throw new ArgumentException("El nombre de la categoría no puede tener más de 15 caracteres");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                throw new Exception("Error al insertar la categoría", ex);
+                throw new Exception($"Error al insertar la categoría: {ex.Message}");
             }
         }
 
-        public void Update( CategoriesDTO entity)
+        public void Update(CategoriesDTO entity)
         {
             try
             {
-                var category = _context.Categories.FirstOrDefault(x => x.CategoryID == entity.CategoryID);
-                if(category != null)
+                if(entity.CategoryName == "" || entity.Description == "")
                 {
-                    if(entity.CategoryName.Length <= 15)
+                    throw new ArgumentException("No se puede actualizar una categoría con campos nulos");
+                }
+                var category = _context.Categories.FirstOrDefault(x => x.CategoryID == entity.CategoryID);
+                if (category != null)
+                {
+                    if (entity.CategoryName.Length <= 15)
                     {
                         category.CategoryName = entity.CategoryName;
                         category.Description = entity.Description;
@@ -90,13 +102,15 @@ namespace Practica6_MVC.Logic
                     {
                         throw new ArgumentException("El nombre de la categoría no puede tener más de 15 caracteres");
                     }
-                }else
+                }
+                else
                 {
                     throw new System.Exception("No se encontró la categoría");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                throw new Exception("Error al actualizar la categoría", ex);
+                throw new Exception($"Error al actualizar la categoría: {ex.Message}");
             }
         }
 
@@ -105,7 +119,7 @@ namespace Practica6_MVC.Logic
             try
             {
                 var category = _context.Categories.FirstOrDefault(x => x.CategoryID == id);
-                if(category != null)
+                if (category != null)
                 {
                     return new CategoriesDTO
                     {
@@ -118,10 +132,11 @@ namespace Practica6_MVC.Logic
                 {
                     throw new System.Exception("No se encontró la categoría");
                 }
-            }catch(Exception ex)
-            {
-                throw new Exception("Error al obtener la categoría", ex);
             }
-        } 
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener la categoría: {ex.Message}");
+            }
+        }
     }
 }

@@ -1,0 +1,29 @@
+﻿@model List<MVC.Models.TmdbViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Usando la API de TMDB</h2>
+<br />
+
+<div class="container">
+    <div class="row">
+        @foreach (var movie in Model)
+        {
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/@movie.poster_path" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.original_title</h5>
+                        <p class="card-text">@movie.overview</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Fecha de Estreno: @movie.release_date</li>
+                        <li class="list-group-item">Popularidad: @movie.popularity</li>
+                        <li class="list-group-item">Calificacion: @movie.vote_average</li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -129,11 +129,13 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TmdbController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoriesView.cs" />
     <Compile Include="Models\ErrorViewModel.cs" />
+    <Compile Include="Models\TmdbViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +193,7 @@
     <Content Include="Views\Category\Insert.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Category\Update.cshtml" />
+    <Content Include="Views\Tmdb\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
