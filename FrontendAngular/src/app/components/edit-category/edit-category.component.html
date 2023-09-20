@@ -1,0 +1,68 @@
+<h2 class="title is-1 is-spaced">Editar la categoria</h2>
+<form [formGroup]="form" *ngIf="category$ | async as category" class="form">
+  <fieldset disabled>
+    <div class="field">
+      <label class="label">ID</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="ID"
+          formControlName="CategoryID"
+            value="{{ category.CategoryID }}"
+        />
+      </div>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label class="label">Nombre</label>
+    <div class="control">
+      <input
+        class="input"
+        type="text"
+        placeholder="Nombre"
+        value=""
+        formControlName="CategoryName"
+      />
+    </div>
+    <div *ngIf="hasError('CategoryName', 'required')" class="help is-danger">
+      Nombre es obligatorio
+    </div>
+    <div *ngIf="hasError('CategoryName', 'maxlength')" class="help is-danger">
+      Nombre debe tener como máximo 15 caracteres
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Descripción</label>
+    <div class="control">
+      <textarea
+        class="textarea"
+        placeholder="Textarea"
+        formControlName="Description"
+        >{{ form.get("Description")?.value }}</textarea
+      >
+    </div>
+    <div *ngIf="hasError('Description', 'required')" class="help is-danger">
+      Descripción es obligatoria
+    </div>
+    <div *ngIf="hasError('Description', 'maxlength')" class="help is-danger">
+      Descripción debe tener como máximo 150 caracteres
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button
+        class="button is-link"
+        [disabled]="isSubmitDisabled()"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </div>
+    <div class="control" (click)="goBack()">
+      <button class="button is-link is-light">Cancel</button>
+    </div>
+  </div>
+</form>
