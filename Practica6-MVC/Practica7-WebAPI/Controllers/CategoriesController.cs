@@ -25,6 +25,21 @@ namespace Practica7_WebAPI.Controllers
             }
         }
 
+        // GET: api/Categories/5
+
+        public IHttpActionResult GetCategories([FromUri] int id)
+        {
+            try
+            {
+                var result = CategoriesLogic.GetById(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         // POST : api/Categories
 
         public IHttpActionResult PostCategories([FromBody] CategoriesDTO categoriesDTO)
