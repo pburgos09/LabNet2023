@@ -2,9 +2,11 @@
 using Practica6_MVC.Logic.DTO;
 using System;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Practica7_WebAPI.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class CategoriesController : ApiController
     {
         CategoriesLogic CategoriesLogic = new CategoriesLogic();
